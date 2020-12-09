@@ -12,11 +12,35 @@
 
   /* La Hauteur d'une Image */
   height: 186px;
+
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .Back {
   z-index : 10;
   background-image: url(Back.jpg);
+ 
+  
+}
+
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+  display: none;
+}
+
+#oui {
+  height: 100%;
+  
+}
+.header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 </style>
@@ -29,7 +53,7 @@ var LastCarte  = null;
 var ModeDebug  = false;
 
 // 4 valeurs * 2 = 8 Cartes, 5 valeurs * 2 = 10 Cartes etc...
-var ArrayCartes = new Array("A", "B", "C", "D");
+var ArrayCartes = new Array("A", "B", "C", "D", "E");
 var ValueCarte  = ArrayCartes.concat(ArrayCartes);
 var NbrValeur   = ValueCarte.length;
 var ArrayDonne  = new Array(NbrValeur);
@@ -97,6 +121,15 @@ function Donne()
   }
 }
 
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+
 // Temporisateur Reset
 function ResetChoix(objID, objLast)
 {
@@ -157,6 +190,8 @@ function Jouer(objID)
             Gagner   ++;
             document.getElementById('NbrGagner').innerHTML = Gagner;
             document.getElementById('Rejouer').disabled = false;
+            alert("vous gagner !!!")
+            myFunction()
           }
           Tirage = true;
         }
@@ -173,7 +208,9 @@ function Jouer(objID)
 window.onload = Donne;
 </SCRIPT>
 
-
+  <div style="display: flex; justify-content: center;">
+    <img src="téléchargement.png" alt="">
+  </div>
   <BODY>
   	
     <TABLE border=0 width=70% align=center cellspacing="2" cellpadding="2" >
@@ -196,18 +233,19 @@ window.onload = Donne;
       </TR>
       <TR>
         <TD>
-        	<label for="tempo"> Niveaux de Difficult�  </label>
+        	<!-- <label for="tempo"> Niveaux de Difficult�  </label>
         	<select id="tempo" onchange="Tempor = this[this.selectedIndex].value;">
         		<option value=1500>Facile</option>
         		<option value=1000 selected>Moyen</option>
         		<option value=500>Dur</option>
         		<option value=200>Tr�s Dur</option>
-        	</select>
+        	</select> -->
         </TD>
         <TD>
            <input id="Rejouer" type="button" value="Rejouer" onclick="InitCarte();" disabled>
         </TD>        
         </TR>
+       
     </TABLE>
     <br>
    <TABLE border=0  align=center cellspacing="1" cellpadding="1" >
@@ -218,16 +256,24 @@ window.onload = Donne;
        <td id="1" onclick="Jouer(this)" class=Back>&nbsp;</td>
        <td id="2" onclick="Jouer(this)" class=Back>&nbsp;</td>
        <td id="3" onclick="Jouer(this)" class=Back>&nbsp;</td>
+       <td id="4" onclick="Jouer(this)" class=Back>&nbsp;</td>
       </tr>
       <tr>
-       <td id="4" onclick="Jouer(this)" class=Back>&nbsp;</td>
        <td id="5" onclick="Jouer(this)" class=Back>&nbsp;</td>
        <td id="6" onclick="Jouer(this)" class=Back>&nbsp;</td>
        <td id="7" onclick="Jouer(this)" class=Back>&nbsp;</td>
+       <td id="8" onclick="Jouer(this)" class=Back>&nbsp;</td>
+       <td id="9" onclick="Jouer(this)" class=Back>&nbsp;</td>
       </tr>
     </TBODY>
 
    </TABLE>
+   <div>
+    <!-- <button onclick="myFunction()">Click Me</button> -->
+    <div id="myDIV">
+      <img src="130084122_124542656010280_6506704800553862156_n.png" id="oui">
+    </div>
+   </div>
    
   </BODY>
 </HTML>
